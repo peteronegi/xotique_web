@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+<section style="padding: 100px 5%; background: var(--brand-white);">
+    <h2 style="font-family: 'Playfair Display'; color: var(--brand-green); text-align: center; margin-bottom: 40px;">GALLERY ARCHIVE</h2>
+
+    <div class="admin-reports-bar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; background: #f9f9f9; padding: 20px; border: 1px solid #eee;">
+    <div>
+        <h4 style="margin: 0; font-family: 'Montserrat'; font-size: 0.8rem; letter-spacing: 1px;">DATA & INSIGHTS</h4>
+        <p style="margin: 0; font-size: 0.7rem; color: #777;">Export your inventory and portfolio data.</p>
+    </div>
+    <div style="display: flex; gap: 15px;">
+        <a href="{{ url_for('export_report') }}" class="btn-report" style="text-decoration: none; padding: 10px 20px; border: 1px solid var(--brand-green); color: var(--brand-green); font-size: 0.7rem; font-weight: 600; letter-spacing: 1px;">
+            <i class="fas fa-file-csv"></i> DOWNLOAD CSV
+        </a>
+        
+        <a href="{{ url_for('lookbook') }}" class="btn-report" style="text-decoration: none; padding: 10px 20px; background: var(--brand-green); color: white; font-size: 0.7rem; font-weight: 600; letter-spacing: 1px;">
+            <i class="fas fa-file-pdf"></i> VIEW LOOKBOOK
+        </a>
+    </div>
+</div>
+    
+
+
+    <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+            <thead>
+                <tr style="background: var(--brand-green); color: white; text-align: left;">
+                    <th style="padding: 15px;">ORDER</th>
+                    <th style="padding: 15px;">PREVIEW</th>
+                    <th style="padding: 15px;">TITLE</th>
+                    <th style="padding: 15px;">CATEGORY</th>
+                    <th style="padding: 15px;">ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in exhibits %}
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 15px; font-weight: bold; color: var(--brand-gold);">#{{ item.display_order }}</td>
+                    <td style="padding: 15px;">
+                        <img src="{{ url_for('static', filename='images/' + item.filename) }}" style="width: 60px; height: 40px; object-fit: cover;">
+                    </td>
+                    <td style="padding: 15px;">{{ item.title }}</td>
+                    <td style="padding: 15px;">{{ item.category }}</td>
+                    <td style="padding: 15px;">
+                        <a href="{{ url_for('edit_exhibition', id=item.id) }}" style="color: var(--brand-green); text-decoration: none; margin-right: 15px; font-size: 0.8rem;">EDIT</a>
+                        <form action="{{ url_for('delete_exhibition', id=item.id) }}" method="POST" style="display:inline;">
+                            <button type="submit" style="background: none; border: none; color: #cc0000; cursor: pointer; font-size: 0.8rem;" onclick="return confirm('Delete this exhibit?')">DELETE</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="{{ url_for('add_exhibition') }}" class="btn-gold">+ ADD NEW EXHIBIT</a>
+    </div>
+</section>
+{% endblock %}

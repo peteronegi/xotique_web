@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="admin-login-section">
+    <div class="admin-form-container">
+        <h2 style="font-family: 'Playfair Display'; color: var(--brand-green);">XOTIQUE PORTAL</h2>
+        <form method="POST">
+            <input type="password" name="password" placeholder="ENTER ACCESS CODE" required 
+                   style="border-bottom: 1px solid var(--brand-green); width: 100%; padding: 10px; margin-top: 20px;">
+            <button type="submit" class="btn-send" style="width: 100%;">ACCESS DASHBOARD</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

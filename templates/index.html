@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero-exhibit">
+    <video autoplay muted loop playsinline class="hero-video">
+        <source src="{{ url_for('static', filename='videos/hero.mp4') }}" type="video/mp4">
+    </video>
+   <div class="hero-content">
+
+    <div class="brand-watermark reveal">Xotique</div>
+
+    <h1 class="reveal" style="color: var(--brand-gold); font-family: 'Playfair Display', serif; letter-spacing: 4px;">HIGH-IMPACT EVENTS</h1>
+    
+    <div class="mission-container reveal">
+        <p class="mission-text">
+            Mission: To creatively design and plan events of uniqueness and style, 
+            curate gifts that reflect individualism, spark joy, and build 
+            unforgettable memories.
+        </p>
+    </div>
+
+    <a href="#contact" class="btn-gold reveal">CONTACT NOW</a>
+</div>
+</section>
+
+<div class="exhibit-grid">
+    {% for event in events %}
+    <div class="exhibit-item reveal">
+        <div class="media-container">
+    {% if event.media_type == 'video' %}
+        <video autoplay muted loop playsinline class="exhibit-video">
+            <source src="{{ url_for('static', filename='images/' + event.filename) }}" type="video/mp4">
+        </video>
+    {% else %}
+        <img src="{{ url_for('static', filename='images/' + event.filename) }}" alt="{{ event.title }}">
+    {% endif %}
+    
+    {# --- NEW ADMIN HOVER TOOLBAR --- #}
+    {% if session.get('is_admin') %}
+    <div class="admin-actions-overlay">
+        <form action="{{ url_for('delete_exhibition', id=event.id) }}" method="POST">
+            <button type="submit" class="admin-tool-btn delete" onclick="return confirm('Permanently remove this from the gallery?')">
+                <i class="fas fa-trash"></i> REMOVE
+            </button>
+        </form>
+    </div>
+    {% endif %}
+
+    <div class="exhibit-overlay">
+        <p class="category">{{ event.category }}</p>
+        <h3>{{ event.title }}</h3>
+        <a href="#contact">ENQUIRE NOW</a>
+    </div>
+</div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

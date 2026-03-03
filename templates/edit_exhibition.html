@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<section style="padding: 100px 10%;">
+    <div class="form-container" style="max-width: 500px; margin: 0 auto; border: 1px solid var(--brand-gold); padding: 40px;">
+        <h3 style="font-family: 'Playfair Display'; text-align: center;">MODIFY EXHIBIT</h3>
+        
+        <div style="text-align: center; margin-bottom: 20px;">
+            <img src="{{ url_for('static', filename='images/' + item.filename) }}" style="width: 100%; max-height: 200px; object-fit: cover;">
+        </div>
+
+        <form method="POST">
+            <label style="font-size: 0.7rem; color: #999;">TITLE</label>
+            <input type="text" name="title" value="{{ item.title }}" style="width: 100%; padding: 10px; margin-bottom: 20px;">
+            
+            <label style="font-size: 0.7rem; color: #999;">CATEGORY</label>
+            <input type="text" name="category" value="{{ item.category }}" style="width: 100%; padding: 10px; margin-bottom: 20px;">
+
+            <label style="font-size: 0.7rem; color: #999;">DISPLAY POSITION (1 = First)</label>
+            <input type="number" name="display_order" value="{{ item.display_order }}" style="width: 100%; padding: 10px; margin-bottom: 30px;">
+            
+            <button type="submit" class="btn-send" style="width: 100%;">UPDATE EXHIBIT</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

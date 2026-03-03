@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xotique - High-Impact Events</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<nav class="main-nav">
+    <div class="logo">
+        <a href="/">
+            <img src="{{ url_for('static', filename='images/logo.jpeg') }}" alt="Xotique Logo">
+        </a>
+    </div>
+    <div class="nav-links">
+        <a href="/">WORK</a> 
+        <a href="/products">GIFTS</a>
+        <a href="#contact">CONTACT</a>
+    </div>
+</nav>
+
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    {% if category == 'success' %}
+                        <div id="successModal" class="modal-overlay">
+                            <div class="modal-content reveal active">
+                                <div class="modal-icon"><i class="fas fa-check-circle"></i></div>
+                                <h2 class="playfair-title">THANK YOU</h2>
+                                <p class="montserrat-text">{{ message }}</p>
+                                <button onclick="closeModal()" class="btn-gold">BACK TO SITE</button>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-{{ category }} reveal">
+                            {{ message }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block hero %}{% endblock %}
+        {% block content %}{% endblock %}
+    </main>
+
+{% if not session.get('is_admin') %}
+<footer id="contact" class="global-footer">
+    <div class="footer-container">
+        <h2 class="reveal">CONNECT WITH XOTIQUE</h2>
+        <p class="reveal" style="max-width: 600px; margin: 0 auto 40px; line-height: 1.8;">
+            Select your preferred platform below to discuss your bespoke event or gifting needs. 
+            We are available for immediate consultation.
+        </p>
+        
+        <div class="inquiry-links reveal" style="display: flex; gap: 40px; justify-content: center; font-size: 2.5rem; margin-bottom: 50px;">
+            <a href="https://wa.me/{{ config.whatsapp_number }}" target="_blank" title="WhatsApp" style="color: var(--brand-green); transition: 0.3s;"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://ig.me/m/{{ config.instagram_handle }}" target="_blank" title="Instagram" style="color: var(--brand-green); transition: 0.3s;"><i class="fab fa-instagram"></i></a>
+            <a href="https://tiktok.com/@{{ config.tiktok_handle }}" target="_blank" title="TikTok" style="color: var(--brand-green); transition: 0.3s;"><i class="fab fa-tiktok"></i></a>
+            <a href="mailto:{{ config.contact_email }}" title="Email" style="color: var(--brand-green); transition: 0.3s;"><i class="far fa-envelope"></i></a>
+            
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 XOTIQUE. ALL RIGHTS RESERVED.</p>
+        </div>
+    </div>
+</footer>
+{% else %}
+<footer class="global-footer">
+    <p>&copy; 2026 Xotique Luxury. All Rights Reserved.</p>
+
+    {# --- HIDDEN ADMIN ACCESS --- #}
+    {% if session.get('is_admin') %}
+<div class="admin-quick-access" style="background: #f4f1ea; padding: 20px; text-align: center; border-top: 2px solid var(--brand-gold);">
+    <span style="font-size: 0.7rem; color: var(--brand-gold); letter-spacing: 2px; display: block; margin-bottom: 10px;">XOTIQUE COMMAND CENTER</span>
+    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+        <a href="{{ url_for('manage_exhibitions') }}">GALLERY ARCHIVE</a>
+        <a href="{{ url_for('products') }}">GIFT SHOP</a>
+        <a href="{{ url_for('export_report') }}" onclick="return confirm('Do you want to generate and download the inventory CSV report?')">GENERATE REPORT (CSV)</a>
+        <a href="{{ url_for('lookbook') }}" target="_blank" onclick="return confirm('Open the professional Lookbook for printing?')">VIEW LOOKBOOK (PDF)</a>
+        <a href="{{ url_for('logout') }}" style="color: #cc0000;">LOGOUT</a>
+    </div>
+</div>
+{% endif %}
+</footer>
+{% endif %}
+
+    <script src="{{ url_for('static', filename='js/video_controller.js') }}"></script>
+</body>
+</html>

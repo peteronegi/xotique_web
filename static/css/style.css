@@ -1,0 +1,524 @@
+/* --- BRAND VARIABLES --- */
+:root {
+    --brand-green: #2d3e1d; 
+    --brand-gold: #d4af37;
+    --brand-white: #ffffff;
+    --brand-black: #1a1a1a;
+}
+
+body {
+    background-color: var(--brand-white); 
+    color: var(--brand-black);
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* --- NAVIGATION --- */
+.main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--brand-green); 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5%;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.nav-links a {
+    color: var(--brand-white); 
+    text-decoration: none;
+    margin-left: 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--brand-gold);
+}
+
+/* --- HERO & MISSION --- */
+main {
+    padding-top: 80px; 
+}
+
+.hero-exhibit {
+    position: relative;
+    background-color: var(--brand-white); 
+    min-height: 85vh; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; 
+    padding-top: 40px; 
+    overflow: hidden;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    width: 100%;
+}
+
+.brand-watermark {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 15vw; 
+    color: #f2f2f2; 
+    letter-spacing: -0.05em; 
+    line-height: 0.8;
+    width: 100%;
+    text-align: center;
+    margin-top: -20px; 
+    margin-bottom: -60px; 
+    pointer-events: none;
+    user-select: none;
+    display: block;
+}
+
+.hero-content h1 {
+    position: relative;
+    z-index: 10;
+    margin-top: 0;
+}
+
+.mission-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.mission-text {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--brand-green); 
+    font-size: 1.15rem;
+    line-height: 1.8;
+    font-weight: 500;
+    max-width: 750px;
+    margin: 30px auto;
+}
+
+/* --- EXHIBIT GRID - FIXED FOR GAPS --- */
+.exhibit-grid {
+    display: grid;
+    /* Changed to auto-fill to force items to occupy the first available slots */
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    background-color: var(--brand-white);
+    /* Ensures the grid starts flush with the container */
+    justify-content: start; 
+}
+
+.exhibit-item {
+    position: relative;
+    height: 450px; 
+    overflow: hidden;
+    /* Ensures the item is treated as a solid block in the grid flow */
+    display: block;
+}
+
+.media-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #f3f3f3;
+}
+
+/* Updated media properties to ensure they fill the grid slot completely */
+.exhibit-video, .exhibit-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.exhibit-item:hover img {
+    transform: scale(1.05);
+}
+
+.exhibit-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    color: white;
+    padding: 20px;
+    text-align: center;
+    z-index: 3;
+}
+
+.exhibit-overlay h3 {
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 2px;
+}
+
+.exhibit-overlay a {
+    color: var(--brand-gold); 
+    text-decoration: none; 
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 2.5px; 
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.exhibit-overlay a:hover {
+    color: var(--brand-white);
+    letter-spacing: 3.5px; 
+    opacity: 0.8;
+}
+
+/* --- CONTACT FOOTER --- */
+.global-footer {
+    padding: 100px 10%;
+    background-color: var(--brand-white);
+    color: var(--brand-black);
+    text-align: center;
+}
+
+.global-footer h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+    color: var(--brand-green); 
+    margin-bottom: 20px;
+}
+
+.contact-form {
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.contact-form input, 
+.contact-form textarea {
+    width: 100%;
+    padding: 15px 0;
+    border: none;
+    border-bottom: 1px solid var(--brand-green); 
+    background: transparent;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--brand-green);
+    outline: none;
+}
+
+.contact-form input::placeholder, 
+.contact-form textarea::placeholder {
+    color: rgba(45, 62, 29, 0.5);
+    text-transform: uppercase;
+}
+
+.contact-form input:focus, 
+.contact-form textarea:focus {
+    border-bottom: 1px solid var(--brand-gold);
+}
+
+/* --- BUTTONS --- */
+.btn-gold, .btn-send {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 50px;
+    background-color: var(--brand-green); 
+    color: var(--brand-white);
+    border: none;
+    border-radius: 30px; 
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.btn-gold:hover, .btn-send:hover {
+    background-color: var(--brand-gold);
+    color: var(--brand-green);
+    transform: translateY(-3px); 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* --- ANIMATIONS --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+    visibility: hidden;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+.loading-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border: 3px solid rgba(212, 175, 55, 0.3);
+    border-top-color: var(--brand-gold);
+    border-radius: 50%;
+    animation: spin 1s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+    .exhibit-grid {
+        grid-template-columns: 1fr;
+    }
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+/* --- PRODUCT PAGE LAYOUT --- */
+.products-hero {
+    padding: 60px 0 20px;
+    text-align: center;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    padding: 40px 10%;
+}
+
+.product-card {
+    text-align: center;
+    background: #fff;
+    padding-bottom: 30px;
+    transition: transform 0.3s ease;
+}
+
+.product-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.price {
+    color: var(--brand-gold);
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.description {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    padding: 0 15px;
+}
+
+/* --- ADMIN UI ELEMENTS --- */
+.admin-top-panel {
+    background: #f4f4f4;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.admin-actions {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.edit-link {
+    color: var(--brand-green);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: #b22222;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-transform: uppercase;
+    padding: 0;
+    margin-left: 15px;
+    transition: color 0.3s ease;
+}
+
+.delete-btn:hover {
+    color: #ff0000;
+    text-decoration: underline;
+}
+
+.alert-success {
+    background-color: #f4f1ea;
+    color: var(--brand-green);
+}
+
+.alert-danger {
+    background-color: #fff0f0;
+    color: #cc0000;
+}
+
+.flash-messages {
+    animation: fadeOut 4s forwards;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; display: none; }
+}
+
+.inquiry-links a:hover {
+    color: var(--brand-gold) !important;
+    transform: scale(1.1);
+}
+
+.global-footer h2 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+/* --- ADMIN COMMAND CENTER LINKS --- */
+.admin-quick-access a {
+    color: var(--brand-green) !important;
+    text-decoration: none !important; /* Removes the underline */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+}
+
+.admin-quick-access a:hover {
+    color: var(--brand-gold) !important; /* Hover color change */
+    transform: translateY(-1px); /* Subtle lift */
+}
+
+/* Maintain the red for logout initially, but allow gold hover */
+.admin-quick-access a[href*="logout"] {
+    color: #cc0000 !important;
+}
+
+.admin-quick-access a[href*="logout"]:hover {
+    color: var(--brand-gold) !important;
+}
+
+/* --- ADMIN HOVER TOOLBAR --- */
+.admin-actions-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    display: flex;
+    justify-content: flex-end;
+    background: linear-gradient(rgba(0,0,0,0.5), transparent);
+    z-index: 10;
+    opacity: 0; /* Hidden by default */
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+/* Show the toolbar when hovering over the container */
+.exhibit-item:hover .admin-actions-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.admin-tool-btn {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 8px 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.admin-tool-btn:hover {
+    background: var(--brand-gold);
+    color: var(--brand-green);
+    border-color: var(--brand-gold);
+}
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5%;
+    background-color: var(--brand-green); /* Matches your screenshot */
+}
+
+.logo img {
+    height: 60px;       /* This is the magic number to shrink it */
+    width: auto;        /* Keeps the logo from looking 'squashed' */
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.05); /* Subtle luxury interaction */
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+}
+html {
+    scroll-behavior: smooth;
+}

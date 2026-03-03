@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="admin-form-section" style="padding: 100px 10%; background: var(--brand-white);">
+    <div class="form-container" style="max-width: 600px; margin: 0 auto; background: #fff; padding: 40px; border: 1px solid var(--brand-gold); box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+        
+        <h2 style="font-family: 'Playfair Display'; color: var(--brand-green); text-align: center; letter-spacing: 2px; margin-bottom: 30px;">
+            PUBLISH NEW EXHIBIT
+        </h2>
+        
+        <form action="{{ url_for('add_exhibition') }}" method="POST" enctype="multipart/form-data">
+            
+            <div style="margin-bottom: 25px;">
+                <label style="font-family: 'Montserrat'; font-size: 0.7rem; letter-spacing: 1px; color: #999;">EXHIBIT TITLE</label>
+                <input type="text" name="title" placeholder="e.g., Summer Yacht Soirée" required 
+                       style="width: 100%; padding: 12px 0; border: none; border-bottom: 1px solid var(--brand-green); outline: none; font-family: 'Montserrat';">
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <label style="font-family: 'Montserrat'; font-size: 0.7rem; letter-spacing: 1px; color: #999;">CUSTOM CATEGORY</label>
+                <input type="text" name="category" placeholder="e.g., Private Celebrations" required 
+                       style="width: 100%; padding: 12px 0; border: none; border-bottom: 1px solid var(--brand-green); outline: none; font-family: 'Montserrat';">
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <label style="font-family: 'Montserrat'; font-size: 0.7rem; letter-spacing: 1px; color: #999;">MEDIA TYPE</label>
+                <select name="media_type" style="width: 100%; padding: 12px; border: 1px solid #eee; background: #fafafa; font-family: 'Montserrat';">
+                    <option value="image">Static High-Res Image</option>
+                    <option value="video">Cinematic Video (MP4)</option>
+                </select>
+            </div>
+
+            <div style="margin-bottom: 35px;">
+                <label style="font-family: 'Montserrat'; font-size: 0.7rem; letter-spacing: 1px; color: #999;">SELECT FILE</label>
+                <input type="file" name="file" required style="display: block; margin-top: 10px; font-family: 'Montserrat'; font-size: 0.8rem;">
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <label style="font-family: 'Montserrat'; font-size: 0.7rem; letter-spacing: 1px; color: #999;">DISPLAY PRIORITY (1 = First, 10 = Last)</label>
+                  <input type="number" name="display_order" value="1" min="1" 
+                    style="width: 100%; padding: 12px 0; border: none; border-bottom: 1px solid var(--brand-green); outline: none;">
+            </div>
+
+            <button type="submit" class="btn-send" style="width: 100%; border-radius: 0;">PUBLISH TO EXHIBITION</button>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="/" style="text-decoration: none; font-family: 'Montserrat'; font-size: 0.7rem; color: #cc0000; letter-spacing: 1px; text-transform: uppercase;">Cancel & Return</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

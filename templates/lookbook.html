@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    @media print {
+        .main-nav, .btn-gold, .admin-quick-access { display: none; }
+        .print-page { page-break-after: always; padding: 0; }
+        body { background: white; }
+    }
+    .report-table { width: 100%; border: 1px solid #000; margin-top: 20px; }
+    .report-table th, .report-table td { border: 1px solid #eee; padding: 10px; text-align: left; }
+</style>
+
+<section class="print-page" style="padding: 100px 10%;">
+    <h1 style="font-family: 'Playfair Display'; color: var(--brand-green); text-align: center;">XOTIQUE INVENTORY REPORT</h1>
+    <p style="text-align: center; color: var(--brand-gold);">Generated on: 2026-02-21</p>
+
+    <h3>GIFTING CURATIONS (HAMPERS)</h3>
+    <table class="report-table">
+        <tr style="background: #f9f9f9;">
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+        </tr>
+        {% for h in hampers %}
+        <tr>
+            <td>{{ h.name }}</td>
+            <td>{{ h.price }}</td>
+            <td>{{ h.description[:100] }}...</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div style="margin-top: 50px;">
+        <h3>EXHIBITION PORTFOLIO</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            {% for e in exhibits %}
+            <div style="border: 1px solid #eee; padding: 10px;">
+                <strong>{{ e.title }}</strong><br>
+                <small>{{ e.category }}</small>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <button onclick="window.print()" class="btn-gold" style="margin-top: 40px;">DOWNLOAD AS PDF / PRINT</button>
+</section>
+{% endblock %}

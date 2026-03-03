@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="admin-form-section" style="padding: 100px 10%;">
+    <div class="form-container" style="max-width: 600px; margin: 0 auto; background: #fff; padding: 40px; border: 1px solid var(--brand-gold);">
+        <h2 style="font-family: 'Playfair Display'; color: var(--brand-green); text-align: center; letter-spacing: 2px;">BUSINESS CONFIGURATION</h2>
+        <p style="text-align: center; font-size: 0.8rem; color: #999; margin-bottom: 30px;">MANAGE GLOBAL INQUIRY FLOWS</p>
+        
+        <form method="POST">
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label style="font-family: 'Montserrat'; font-size: 0.7rem; letter-spacing: 1px;">PRIMARY CONTACT EMAIL</label>
+                <input type="email" name="email" value="{{ config.contact_email }}" required style="width: 100%; border: none; border-bottom: 1px solid var(--brand-gold); padding: 10px 0; outline: none;">
+            </div>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label style="font-family: 'Montserrat'; font-size: 0.7rem; letter-spacing: 1px;">WHATSAPP NUMBER (Incl. Country Code)</label>
+                <input type="text" name="whatsapp" value="{{ config.whatsapp_number }}" placeholder="e.g. 254700000000" required style="width: 100%; border: none; border-bottom: 1px solid var(--brand-gold); padding: 10px 0; outline: none;">
+            </div>
+
+            <div class="form-group" style="margin-bottom: 30px;">
+                <label style="font-family: 'Montserrat'; font-size: 0.7rem; letter-spacing: 1px;">INSTAGRAM HANDLE</label>
+                <input type="text" name="instagram" value="{{ config.instagram_handle }}" placeholder="e.g. xotique_luxury" required style="width: 100%; border: none; border-bottom: 1px solid var(--brand-gold); padding: 10px 0; outline: none;">
+            </div>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label style="font-family: 'Montserrat'; font-size: 0.7rem; letter-spacing: 1px;">TIKTOK HANDLE (e.g. xotique_luxury)</label>
+                <input type="text" name="tiktok" value="{{ config.tiktok_handle }}" placeholder="e.g. xotique_luxury" required style="width: 100%; border: none; border-bottom: 1px solid var(--brand-gold); padding: 10px 0; outline: none;">
+            </div>
+
+            <button type="submit" class="btn-send" style="width: 100%;">SAVE CONFIGURATION</button>
+            <a href="/products" style="display: block; text-align: center; margin-top: 20px; color: #999; text-decoration: none; font-size: 0.8rem;">BACK TO BOUTIQUE</a>
+        </form>
+    </div>
+</section>
+{% endblock %}

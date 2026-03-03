@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="products-hero">
+    <div class="brand-watermark reveal">Gifts</div>
+    <h1 class="reveal" style="color: var(--brand-gold); font-family: 'Playfair Display', serif; letter-spacing: 4px;">
+        CURATED COLLECTIONS
+    </h1>
+    
+    {% if session.get('is_admin') %}
+<div class="admin-top-panel reveal">
+    <p style="color: var(--brand-green); font-weight: 600;">ADMIN CONSOLE</p>
+    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+        <a href="{{ url_for('add_product') }}" class="btn-send">+ NEW PRODUCT</a>
+        <a href="{{ url_for('add_exhibition') }}" class="btn-send">+ NEW EXHIBITION</a>
+        <a href="{{ url_for('manage_settings') }}" class="btn-send">⚙️ SETTINGS</a>
+    </div>
+    <a href="/logout" style="display: block; margin-top: 15px; color: #cc0000;">LOGOUT</a>
+</div>
+    {% endif %}
+</section>
+
+<div class="product-grid">
+    {% for hamper in hampers %}
+    <div class="product-card reveal">
+        <div class="product-image">
+            <img src="{{ url_for('static', filename='images/' + hamper.image_url) }}" alt="{{ hamper.name }}">
+        </div>
+        
+        <div class="product-info">
+            <h3 style="font-family: 'Playfair Display', serif;">{{ hamper.name }}</h3>
+            <p class="price">KES {{ hamper.price }}</p>
+            <p class="description" style="font-family: 'Montserrat', sans-serif;">{{ hamper.description }}</p>
+            
+            {% if session.get('is_admin') %}
+                <div class="admin-actions">
+                    <a href="/admin/edit/{{ hamper.id }}" class="edit-link">EDIT INFO</a>
+                    
+                    <form action="{{ url_for('delete_product', id=hamper.id) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="delete-btn" onclick="return confirm('Delete this hamper?')">
+                            REMOVE
+                        </button>
+                    </form>
+                </div>
+            {% else %}
+                <div class="inquiry-actions">
+                    <p style="font-size: 0.7rem; letter-spacing: 1px; margin-bottom: 10px; color: #999;">INQUIRE VIA:</p>
+                    
+                    <div class="inquiry-links" style="display: flex; gap: 15px; justify-content: center;">
+                        <a href="https://wa.me/{{ config.whatsapp_number }}?text=Hello%20Xotique,%20I'm%20interested%20in%20the%20{{ hamper.name | urlencode }}." 
+                           target="_blank" title="WhatsApp">
+                           <i class="fab fa-whatsapp"></i>
+                        </a>
+
+                        <a href="https://ig.me/m/{{ config.instagram_handle }}" target="_blank" title="Instagram">
+                           <i class="fab fa-instagram"></i>
+                        </a>
+
+                        <a href="mailto:{{ config.contact_email }}?subject=Inquiry: {{ hamper.name }}&body=I am interested in {{ hamper.name }} (KES {{ hamper.price }})." 
+                           title="Email">
+                           <i class="far fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="admin-form-section" style="padding: 100px 10%;">
+    <div class="form-container" style="max-width: 600px; margin: 0 auto; background: #fff; padding: 40px; border: 1px solid var(--brand-gold);">
+        <h2 style="font-family: 'Playfair Display'; color: var(--brand-green); text-align: center;">NEW CURATION</h2>
+        
+        <form method="POST" enctype="multipart/form-data">
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label style="font-family: 'Montserrat'; font-size: 0.8rem; letter-spacing: 1px;">HAMPER NAME</label>
+                <input type="text" name="name" required style="width: 100%; border: none; border-bottom: 1px solid var(--brand-green); padding: 10px 0; outline: none;">
+            </div>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label style="font-family: 'Montserrat'; font-size: 0.8rem; letter-spacing: 1px;">PRICE (KES)</label>
+                <input type="text" name="price" required style="width: 100%; border: none; border-bottom: 1px solid var(--brand-green); padding: 10px 0; outline: none;">
+            </div>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label style="font-family: 'Montserrat'; font-size: 0.8rem; letter-spacing: 1px;">DESCRIPTION</label>
+                <textarea name="description" rows="3" style="width: 100%; border: none; border-bottom: 1px solid var(--brand-green); padding: 10px 0; outline: none;"></textarea>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 30px;">
+                <label style="font-family: 'Montserrat'; font-size: 0.8rem; letter-spacing: 1px;">IMAGE UPLOAD</label>
+                <input type="file" name="image" accept="image/*" style="margin-top: 10px;">
+            </div>
+
+            <button type="submit" class="btn-send" style="width: 100%;">SAVE TO COLLECTIONS</button>
+            <a href="/products" style="display: block; text-align: center; margin-top: 20px; color: #999; text-decoration: none; font-size: 0.8rem;">CANCEL</a>
+        </form>
+    </div>
+</section>
+{% endblock %}
