@@ -301,6 +301,25 @@ main {
         flex-direction: column;
         gap: 0;
     }
+    .nav-links {
+        display: flex;
+        justify-content: center;
+        gap: 12px; /* Tightens the space between WORK, GIFTS, CONTACT */
+        width: 100%;
+    }
+    .nav-links a {
+        font-size: 13px; /* Slightly smaller text for mobile luxury feel */
+        letter-spacing: 0.5px;
+    }
+    /* Extra Safety for very small phones (under 380px) */
+@media (max-width: 380px) {
+    .nav-links {
+        gap: 8px;
+    }
+    .nav-links a {
+        font-size: 11px;
+    }
+}
 }
 
 /* --- PRODUCT PAGE LAYOUT --- */
@@ -508,8 +527,12 @@ main {
 }
 
 .nav-links {
-    display: flex;
-    gap: 30px;
+    display: flex; /* Aligns items in a row */
+    justify-content: center; /* Centers the group of links */
+    gap: 15px; /* Creates consistent space between links */
+    flex-wrap: nowrap; /* Prevents them from jumping to a second line */
+    width: 100%; /* Forces the container to span the full width of the screen */
+    padding: 0 10px;
 }
 
 .nav-links a {
@@ -517,7 +540,7 @@ main {
     text-decoration: none;
     font-family: 'Montserrat', sans-serif;
     font-size: 0.8rem;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 }
 html {
     scroll-behavior: smooth;
